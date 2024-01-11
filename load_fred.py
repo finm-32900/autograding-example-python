@@ -8,15 +8,22 @@ import numpy as np
 # }
 
 def pull_fred_repo_data(start_date, end_date, series_to_pull):
-#     """
-#     Lookup series code, e.g., like this:
-#     https://fred.stlouisfed.org/series/RPONTSYD
-#     """
-#     df = web.DataReader(list(series_to_pull.keys()), 'fred', start_date, end_date)
-    df = pd.DataFrame()
+    """
+    Lookup series code, e.g., like this:
+    https://fred.stlouisfed.org/series/RPONTSYD
+    """
+    df = web.DataReader(list(series_to_pull.keys()), 'fred', start_date, end_date)
     return df
 
-
+def _setup():
+    series_to_pull = {
+        'EFFR': 'Effective Federal Funds Rate', 
+        'SOFR': 'SOFR',
+    }
+    start_date = '2012-01-01'
+    end_date = '2024-04-01'
+    df = pull_fred_repo_data(start_date, end_date, series_to_pull=series_to_pull)
+    
 # def _demo():
 #     start_date = '2012-01-01'
 #     end_date = '2024-04-01'
